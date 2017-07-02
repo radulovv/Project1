@@ -1,8 +1,9 @@
 #include <iostream>
 #include <conio.h>
 #include <windows.h>
+
 using namespace std;
-bool EndGamedGame;
+bool EndGame;
 const int width = 20;
 const int height = 20;
 int x, y, FoodX, FoodY, score; //x,y represent the head of the snake
@@ -12,7 +13,7 @@ enum eDirecton { STOP = 0, LEFT, RIGHT, UP, DOWN };
 eDirecton dir;
 void Setup()
 {
-	EndGamedGame = false;
+	EndGame = false;
 	dir = STOP;
 	x = width / 2;
 	y = height / 2;
@@ -91,8 +92,8 @@ void Input()
 		case 's':
 			dir = DOWN;
 			break;
-		case 'x':
-			EndGamedGame = true;
+		case 'q':
+			EndGame = true;
 			break;
 		}
 	}
@@ -138,7 +139,7 @@ void Logic()
 
 	for (int i = 0; i < lTail; i++)
 		if (tailX[i] == x && tailY[i] == y)
-			EndGamedGame = true;
+			EndGame = true;
 
 	//adds score and segments to tail when eating food
 	if (x == FoodX && y == FoodY)
@@ -152,7 +153,7 @@ void Logic()
 int main()
 {
 	Setup();
-	while (!EndGamedGame)
+	while (!EndGame)
 	{
 		Draw();
 		Input();
