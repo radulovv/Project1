@@ -29,8 +29,8 @@ void Setup()
 void Draw()
 {
 	system("cls"); //calls a clear system console
-
-				   //Draws the "arena"
+	
+	//Draws the "arena"
 
 	for (int i = 0; i < width + 2; i++)
 		cout << "#";
