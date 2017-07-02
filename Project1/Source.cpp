@@ -1,12 +1,14 @@
 #include <iostream>
+#include <fstream>
 #include <conio.h>
 #include <windows.h>
+#include <Header.h>
 
 using namespace std;
 bool EndGame;
 const int width = 20;
 const int height = 20;
-int x, y, FoodX, FoodY, score; //x,y represent the head of the snake
+int x, y, FoodX, FoodY, gameScore; //x,y represent the head of the snake
 int tailX[100], tailY[100];   //100 is the max lenght the tail can reach
 int lTail; // length of the tail
 enum eDirecton { STOP = 0, LEFT, RIGHT, UP, DOWN };
@@ -19,7 +21,7 @@ void Setup()
 	y = height / 2;
 	FoodX = rand() % width;
 	FoodY = rand() % height;
-	score = 0;
+	gameScore = 0;
 }
 
 //######
@@ -72,7 +74,7 @@ void Draw()
 	for (int i = 0; i < width + 2; i++)
 		cout << "#";
 	cout << endl;
-	cout << "Score:" << score << endl;
+	cout << "Score:" << gameScore << endl;
 }
 void Input()
 {
@@ -144,12 +146,20 @@ void Logic()
 	//adds score and segments to tail when eating food
 	if (x == FoodX && y == FoodY)
 	{
-		score += 10;
+		gameScore += 5;
 		FoodX = rand() % width;
 		FoodY = rand() % height;
 		lTail++;
 	}
+	
 }
+
+void Leaderboard()
+{
+
+}
+
+
 int main()
 {
 	Setup();
@@ -158,6 +168,7 @@ int main()
 		Draw();
 		Input();
 		Logic();
+		Leaderboard();
 		Sleep(50); // - used to slow the game down a bit
 	}
 	return 0;
